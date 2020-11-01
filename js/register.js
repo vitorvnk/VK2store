@@ -87,7 +87,6 @@ async function registrar(event) {
         
         let x = []
         jsonResposta.errors.forEach(erro => x.push((erro.field)))
-        jsonResposta.errors.forEach(erro => console.log(erro.field, erro.message))
 
         if (x.indexOf('Nome') != -1){
             sNome.innerText = 'Nome Invalido.'

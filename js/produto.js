@@ -26,15 +26,10 @@ async function listarProdutos(e, order) {
     let resposta = await sendRequest(`/odata/produto?$orderby=${listProduto.order}`);
     // fetch(urlApi + "/api/categoria").then(function(resposta){ });
     let json = await resposta.json();
-
     let table = document.getElementById("produtos");
-
     if (table == null) return;
-
     let tbody = table.getElementsByTagName("tbody")[0];
-
     if (tbody == null) return;
-
     tbody.innerHTML = "";
 
     json.value.forEach(produto => {
@@ -159,11 +154,7 @@ async function saveProduto(event) {
         transitionTo(null, "/produto");
     }
     else {
-        let jsonResposta = await res.json();
-            
-        let x = []
-        jsonResposta.errors.forEach(erro => x.push((erro.field)))
-        jsonResposta.errors.forEach(erro => console.log(erro.field, erro.message))
+        alert('Erro')
     }
 }
 
@@ -182,11 +173,6 @@ async function excluirProduto(id) {
         }
         else {
             alert("Não foi possível excluir o registro");
-            let jsonResposta = await res.json();
-            
-            let x = []
-            jsonResposta.errors.forEach(erro => x.push((erro.field)))
-            jsonResposta.errors.forEach(erro => console.log(erro.field, erro.message))
         }
     }
 }

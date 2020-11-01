@@ -31,7 +31,6 @@ async function logar(event) {
         
         let x = []
         jsonResposta.errors.forEach(erro => x.push((erro.field)))
-        jsonResposta.errors.forEach(erro => console.log(erro.field, erro.message))
 
         if (x.indexOf('Email') != -1){
             sEmail.innerText = 'E-mail Invalido.'
