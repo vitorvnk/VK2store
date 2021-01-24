@@ -8,6 +8,7 @@ async function getCount() {
 }
 
 const listProduto = { order: "id+desc" };
+var produtos = document.getElementById("produtos")
 
 async function listarProdutos(e, order) {
 
@@ -31,6 +32,7 @@ async function listarProdutos(e, order) {
     let tbody = table.getElementsByTagName("tbody")[0];
     if (tbody == null) return;
     tbody.innerHTML = "";
+    
 
     json.value.forEach(produto => {
         let linha = document.createElement("tr"); //<tr></tr>
@@ -64,6 +66,22 @@ async function listarProdutos(e, order) {
         linha.appendChild(colunaCategoria); // adiciona coluna categoria
         linha.appendChild(colunaOperacoes); // adiciona coluna categoria
         tbody.appendChild(linha);
+
+        produtos.innerHTML += `
+        <div class="card">
+            <img src="${produto.image}" class="card-img-top" alt="${produto.nome}">
+            <div class="card-body">
+            <h5 class="card-title">${produto.nome}</h5>
+            </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">${produto.categoria.nome}</li>
+            <li class="list-group-item">R$ ${produto.preco}</li>
+        </ul>
+        <div class="card-body is-logged">
+            <button onclick="transitionTo(event, '/produto/edit/${produto.id}')" class="btn btn-warning">Editar</button>
+            <button onclick="excluirProduto(${produto.id})" class="btn btn-danger">Excluir</button>
+        </div>
+        </div>`;
     });
     verificarNodes();
 }
